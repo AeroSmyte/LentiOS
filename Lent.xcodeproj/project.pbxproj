@@ -45,8 +45,6 @@
 		D3BA647D2B4EFA9800C12A93 = {
 			isa = PBXGroup;
 			children = (
-				D36EC6482B51145D00E4AA97 /* MainView.swift */,
-				D36EC64A2B5114EB00E4AA97 /* AddBookEntryView.swift */,
 				D3BA64882B4EFA9800C12A93 /* Lent */,
 				D3BA64872B4EFA9800C12A93 /* Products */,
 			);
@@ -63,6 +61,8 @@
 		D3BA64882B4EFA9800C12A93 /* Lent */ = {
 			isa = PBXGroup;
 			children = (
+				D36EC6482B51145D00E4AA97 /* MainView.swift */,
+				D36EC64A2B5114EB00E4AA97 /* AddBookEntryView.swift */,
 				D3BA64892B4EFA9800C12A93 /* LentApp.swift */,
 				D3BA648B2B4EFA9800C12A93 /* BookListView.swift */,
 				D36EC6462B50EE6C00E4AA97 /* BookDetailView.swift */,
