@@ -9,19 +9,26 @@ import SwiftUI
 
 struct StatsHomeView: View {
   
-  
+  @ObservedObject var viewModel = BookEntryViewModel.shared
+
   var body: some View {
       VStack {
         LogoTitle()
         
-        PagesBorrowedView()
-        PagesLentView()
+        PagesBorrowedView(pagesBorrowed: viewModel.totalPagesBorrowed)
+        PagesLentView(pagesLent: viewModel.totalPagesLent)
         
-        HStack {
-          BookMoodBlockView(title: "BIP", number: 12)
-          BookMoodBlockView(title: "DNF", number: 2)
-          BookMoodBlockView(title: "To Read", number: 10)
+        HStack(spacing: 50) {
+
+          BookMoodBlockView(title: "Lent", number: viewModel.totalBooksLent)
+          BookMoodBlockView(title: "Borrowed", number: viewModel.totalBooksBorrowed)
+
         }
+        Text("Keep Reading!")
+          .padding(.top)
+          .font(.largeTitle)
+          .bold()
+
       }
   }
 }
@@ -52,9 +59,12 @@ struct LogoTitle: View {
 }
 
 struct PagesBorrowedView: View {
+  
+  var pagesBorrowed: Int
+  
   var body: some View {
     VStack(spacing: 10) {
-      Text("1100 pages".uppercased())
+      Text("\(pagesBorrowed) pages".uppercased())
         .font(.largeTitle)
         .bold()
         .kerning(3)
@@ -73,9 +83,12 @@ struct PagesBorrowedView: View {
 }
 
 struct PagesLentView: View {
+  
+  var pagesLent: Int
+
   var body: some View {
     VStack(spacing: 10) {
-      Text("1100 pages".uppercased())
+      Text("\(pagesLent) pages".uppercased())
         .font(.largeTitle)
         .bold()
         .kerning(3)
@@ -103,11 +116,13 @@ struct BookMoodBlockView: View {
       Text(title)
         .font(.title2)
         .fontWeight(.heavy)
+        .minimumScaleFactor(0.9)
+        .lineLimit(2)
       Text("\(number)")
         .font(.title3)
       
     }
-    .frame(width: 100, height: 100)
+    .frame(width: 150, height: 100)
     .background(Color("DarkGray"))
     .cornerRadius(14)
     .foregroundColor(.white)
