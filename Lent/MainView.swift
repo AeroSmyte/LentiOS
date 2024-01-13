@@ -22,7 +22,7 @@ struct MainView: View {
           Text("Books")
         }
       
-      AddBookEntryView()
+      AddBookEntryView(isAddEntryViewPresented: .constant(false))
         .tabItem {
           Image(systemName: "plus.circle")
           Text("Add Books")

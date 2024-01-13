@@ -10,6 +10,7 @@
 		D36EC6472B50EE6C00E4AA97 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36EC6462B50EE6C00E4AA97 /* BookDetailView.swift */; };
 		D36EC6492B51145D00E4AA97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36EC6482B51145D00E4AA97 /* MainView.swift */; };
 		D36EC64B2B5114EB00E4AA97 /* AddBookEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36EC64A2B5114EB00E4AA97 /* AddBookEntryView.swift */; };
+		D37EF05B2B520BBD0064C4CB /* BookEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EF05A2B520BBD0064C4CB /* BookEntryViewModel.swift */; };
 		D3BA648A2B4EFA9800C12A93 /* LentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA64892B4EFA9800C12A93 /* LentApp.swift */; };
 		D3BA648C2B4EFA9800C12A93 /* BookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA648B2B4EFA9800C12A93 /* BookListView.swift */; };
 		D3BA648E2B4EFA9900C12A93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BA648D2B4EFA9900C12A93 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		D36EC6462B50EE6C00E4AA97 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		D36EC6482B51145D00E4AA97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D36EC64A2B5114EB00E4AA97 /* AddBookEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookEntryView.swift; sourceTree = "<group>"; };
+		D37EF05A2B520BBD0064C4CB /* BookEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEntryViewModel.swift; sourceTree = "<group>"; };
 		D3BA64862B4EFA9800C12A93 /* Lent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BA64892B4EFA9800C12A93 /* LentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LentApp.swift; sourceTree = "<group>"; };
 		D3BA648B2B4EFA9800C12A93 /* BookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListView.swift; sourceTree = "<group>"; };
@@ -42,6 +44,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D37EF0542B51EB590064C4CB /* AddBook */ = {
+			isa = PBXGroup;
+			children = (
+				D36EC64A2B5114EB00E4AA97 /* AddBookEntryView.swift */,
+			);
+			path = AddBook;
+			sourceTree = "<group>";
+		};
+		D37EF0552B51EB670064C4CB /* BookList */ = {
+			isa = PBXGroup;
+			children = (
+				D3BA648B2B4EFA9800C12A93 /* BookListView.swift */,
+			);
+			path = BookList;
+			sourceTree = "<group>";
+		};
+		D37EF0562B51EB720064C4CB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D3BA649B2B4F0A6400C12A93 /* BookEntry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D37EF0572B51EB7B0064C4CB /* BookDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D36EC6462B50EE6C00E4AA97 /* BookDetailView.swift */,
+			);
+			path = BookDetail;
+			sourceTree = "<group>";
+		};
+		D37EF0582B51EB930064C4CB /* StatsHome */ = {
+			isa = PBXGroup;
+			children = (
+				D3BA64972B4F007800C12A93 /* StatsHomeView.swift */,
+			);
+			path = StatsHome;
+			sourceTree = "<group>";
+		};
+		D37EF0592B520BAB0064C4CB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D37EF05A2B520BBD0064C4CB /* BookEntryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		D3BA647D2B4EFA9800C12A93 = {
 			isa = PBXGroup;
 			children = (
@@ -61,13 +111,14 @@
 		D3BA64882B4EFA9800C12A93 /* Lent */ = {
 			isa = PBXGroup;
 			children = (
+				D37EF0592B520BAB0064C4CB /* ViewModels */,
+				D37EF0582B51EB930064C4CB /* StatsHome */,
+				D37EF0572B51EB7B0064C4CB /* BookDetail */,
+				D37EF0562B51EB720064C4CB /* Models */,
+				D37EF0552B51EB670064C4CB /* BookList */,
+				D37EF0542B51EB590064C4CB /* AddBook */,
 				D36EC6482B51145D00E4AA97 /* MainView.swift */,
-				D36EC64A2B5114EB00E4AA97 /* AddBookEntryView.swift */,
 				D3BA64892B4EFA9800C12A93 /* LentApp.swift */,
-				D3BA648B2B4EFA9800C12A93 /* BookListView.swift */,
-				D36EC6462B50EE6C00E4AA97 /* BookDetailView.swift */,
-				D3BA649B2B4F0A6400C12A93 /* BookEntry.swift */,
-				D3BA64972B4F007800C12A93 /* StatsHomeView.swift */,
 				D3BA648D2B4EFA9900C12A93 /* Assets.xcassets */,
 				D3BA648F2B4EFA9900C12A93 /* Preview Content */,
 			);
@@ -156,6 +207,7 @@
 				D36EC6492B51145D00E4AA97 /* MainView.swift in Sources */,
 				D36EC64B2B5114EB00E4AA97 /* AddBookEntryView.swift in Sources */,
 				D3BA64982B4F007800C12A93 /* StatsHomeView.swift in Sources */,
+				D37EF05B2B520BBD0064C4CB /* BookEntryViewModel.swift in Sources */,
 				D36EC6472B50EE6C00E4AA97 /* BookDetailView.swift in Sources */,
 				D3BA648A2B4EFA9800C12A93 /* LentApp.swift in Sources */,
 				D3BA649C2B4F0A6400C12A93 /* BookEntry.swift in Sources */,

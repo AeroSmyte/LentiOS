@@ -10,33 +10,43 @@ import SwiftUI
 
 struct BookListView: View {
   
-  @ObservedObject var viewModel = BookListViewModel.shared
+  @ObservedObject var viewModel = BookEntryViewModel.shared
+  
+  @State private var isAddEntryViewPresented = false
   
   var body: some View {
     NavigationView {
-      BookEntryView(viewModel: viewModel)
+      BookCard(viewModel: viewModel)
         .navigationTitle("Lent")
+        .toolbar {
+          ToolbarItem(placement: .navigationBarTrailing) {
+            NavigationLink(destination: AddBookEntryView(isAddEntryViewPresented: $isAddEntryViewPresented), isActive: $isAddEntryViewPresented) {
+                          Button("Add Book") {
+                              isAddEntryViewPresented = true
+                          }
+                      }
+                  }
+        }
     }
   }
 }
 
 struct BookListContentView_Previews: PreviewProvider {
   static var previews: some View {
-    BookListView(viewModel: BookListViewModel())
+    BookListView(viewModel: BookEntryViewModel())
   }
 }
 
-struct BookEntryView: View {
+struct BookCard: View {
   
-  var viewModel: BookListViewModel
+  var viewModel: BookEntryViewModel
   
   private let gridColumns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
   
   var body: some View {
     ScrollView {
-      
       LazyVGrid(columns: gridColumns, spacing: 30) {
-        ForEach(viewModel.allBooks(), id: \.id) { book in
+        ForEach(viewModel.bookList, id: \.id) { book in
           NavigationLink(destination: BookDetailView(book: book)) {
             LazyVStack {
               VStack {
@@ -65,8 +75,6 @@ struct BookEntryView: View {
                   .padding(10)
               }
               .padding()
-              
-              
             }
             
           }

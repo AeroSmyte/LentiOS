@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct LentApp: App {
+  
+  @StateObject var bookEntryViewModel: BookEntryViewModel = BookEntryViewModel()
+  
     var body: some Scene {
         WindowGroup {
           MainView()
+            .environmentObject(bookEntryViewModel)
         }
     }
 }
