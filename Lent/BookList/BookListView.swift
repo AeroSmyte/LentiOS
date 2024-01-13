@@ -16,7 +16,7 @@ struct BookListView: View {
   
   var body: some View {
     NavigationView {
-      BookCard(viewModel: viewModel)
+      BookCardList(viewModel: viewModel)
         .navigationTitle("Lent")
         .toolbar {
           ToolbarItem(placement: .navigationBarTrailing) {
@@ -24,6 +24,7 @@ struct BookListView: View {
                           Button("Add Book") {
                               isAddEntryViewPresented = true
                           }
+                          .foregroundColor(.purple)
                       }
                   }
         }
@@ -37,7 +38,7 @@ struct BookListContentView_Previews: PreviewProvider {
   }
 }
 
-struct BookCard: View {
+struct BookCardList: View {
   
   var viewModel: BookEntryViewModel
   
@@ -50,6 +51,7 @@ struct BookCard: View {
     ScrollView {
       LazyVGrid(columns: gridColumns, spacing: 30) {
         ForEach(viewModel.bookList, id: \.id) { book in
+
           NavigationLink(destination: BookDetailView(book: book, isDetailViewPresented: $isDetailViewPresented), isActive: $isDetailViewPresented) {
             LazyVStack {
               VStack {
@@ -71,7 +73,6 @@ struct BookCard: View {
             
           }
         }
-        .padding(.top, 10)
       }
     }
   }
