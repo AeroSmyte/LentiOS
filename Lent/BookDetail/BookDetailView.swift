@@ -11,31 +11,52 @@ struct BookDetailView: View {
   
   var book: BookEntry
   
+  @Binding var isDetailViewPresented: Bool
+  
   var body: some View {
-    ScrollView {
-      VStack {
-        HStack {
-          DaysLentAndRatingView(book: book)
-          
-          VStack(alignment: .leading) {
-            Text(book.bookTitle)
-              .font(.system(size: 72))
-              .minimumScaleFactor(0.01)
-              .lineLimit(3)
-              .bold()
-              .frame(maxWidth: 210)
+    ZStack(alignment: .bottom) {
+      ScrollView {
+        VStack {
+          HStack {
+            DaysLentAndRatingView(book: book)
             
-            Text(book.bookAuthor)
+            VStack(alignment: .leading) {
+              Text(book.bookTitle)
+                .font(.system(size: 72))
+                .minimumScaleFactor(0.01)
+                .lineLimit(3)
+                .bold()
+                .frame(maxWidth: 210)
+              
+              Text(book.bookAuthor)
+            }
           }
+          .padding()
+          
+          DetailedBookProgressView(book: book)
+            .padding(.bottom, 20)
+          
+          MetadataRatingView(book: book)
         }
-        .padding()
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         
-        DetailedBookProgressView(book: book)
-          .padding(.bottom, 20)
         
-        MetadataRatingView(book: book)
       }
       
+      Button {
+        isDetailViewPresented = false
+      } label: {
+        Image(systemName: "xmark")
+          .font(.title.weight(.semibold))
+          .padding()
+          .background(Color.purple)
+          .foregroundColor(.white)
+          .clipShape(Circle())
+          .shadow(radius: 4, x: 0, y: 4)
+        
+      }
+      .padding()
       
     }
   }
@@ -43,7 +64,7 @@ struct BookDetailView: View {
 
 struct BookDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    BookDetailView(book: BookEntry(bookTitle: "Fake Title", bookAuthor: "Lexi McQueen", bookStatus: .lent, currentProgress: 50.0, rating: 4, pageCount: 200))
+    BookDetailView(book: BookEntry(bookTitle: "Fake Title", bookAuthor: "Lexi McQueen", bookStatus: .lent, currentProgress: 50.0, rating: 4, pageCount: 200), isDetailViewPresented: .constant(true))
   }
 }
 
@@ -163,12 +184,7 @@ struct RatingView: View {
   }
   
   func ratingImage(for number: Int) -> Image {
-    if number > rating {
-      offImage ?? onImage
-    } else {
-      onImage
-    }
-    return onImage
+    number > rating ? (offImage ?? onImage) : onImage
   }
 }
 

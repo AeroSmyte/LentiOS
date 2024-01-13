@@ -41,27 +41,19 @@ struct BookCard: View {
   
   var viewModel: BookEntryViewModel
   
+  @State private var isDetailViewPresented : Bool = false
+
+  
   private let gridColumns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
   
   var body: some View {
     ScrollView {
       LazyVGrid(columns: gridColumns, spacing: 30) {
         ForEach(viewModel.bookList, id: \.id) { book in
-          NavigationLink(destination: BookDetailView(book: book)) {
+          NavigationLink(destination: BookDetailView(book: book, isDetailViewPresented: $isDetailViewPresented), isActive: $isDetailViewPresented) {
             LazyVStack {
               VStack {
-                ZStack {
-                  CircularProgressView(progress: book.currentProgress)
-                    .frame(width: 120, height: 120)
-                    .padding(.bottom, 5)
-                  
-                  Image(systemName: book.completed ? "book.circle.fill" : "book.closed.circle.fill")
-                    .resizable()
-                    .foregroundColor(.black.opacity(0.8))
-                    .frame(width: 75, height: 75)
-                    .aspectRatio(contentMode: .fit)
-                    .padding(.bottom, 5)
-                }
+                ProgressBarLayerIconView(book: book)
                 Text("\(Int(book.currentProgress))%")
                   .font(.caption)
                   .foregroundColor(.gray)
@@ -113,3 +105,22 @@ struct CircularProgressView: View {
 }
 
 
+
+struct ProgressBarLayerIconView: View {
+  
+  var book: BookEntry
+  var body: some View {
+    ZStack {
+      CircularProgressView(progress: book.currentProgress)
+        .frame(width: 120, height: 120)
+        .padding(.bottom, 5)
+      
+      Image(systemName: book.completed ? "book.circle.fill" : "book.closed.circle.fill")
+        .resizable()
+        .foregroundColor(.black.opacity(0.8))
+        .frame(width: 75, height: 75)
+        .aspectRatio(contentMode: .fit)
+        .padding(.bottom, 5)
+    }
+  }
+}
