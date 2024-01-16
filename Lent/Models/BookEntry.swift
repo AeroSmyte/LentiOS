@@ -22,19 +22,48 @@ enum BookStatus: CaseIterable, Identifiable, CustomStringConvertible {
     }
   }
 }
-
+enum Language: CaseIterable, Identifiable, CustomStringConvertible {
+  case english, chinese, spanish, italian, russian, ukrainian, portuguese, arabic, japanese, french, german
+  
+  var id: Self { self }
+  
+  var description: String {
+    switch self {
+    case .arabic:
+      return "ARA"
+    case .chinese:
+      return "CHI"
+    case .english:
+      return "ENG"
+    case .french:
+      return "FRE"
+    case .german:
+      return "GER"
+    case .italian:
+      return "ITA"
+    case .japanese:
+      return "JPN"
+    case .portuguese:
+      return "POR"
+    case .russian:
+      return "RUS"
+    case .spanish:
+      return "SPA"
+    case .ukrainian:
+      return "UKR"
+    }
+  }
+}
 struct BookEntry: Identifiable, Hashable {
   var bookTitle: String
   var bookAuthor: String
   var bookStatus : BookStatus
   var completed: Bool = true
   var currentProgress: Double
-  var daysBorrowed: Int?
-  var daysLent: Int?
-  var bookLanguage: String = "ENG"
+  var lendBorrowDate: Date
+  var bookLanguage: Language = .english
   var rating: Int
-  var pageCount : Int
+  var totalPages : Int
   
   var id = UUID()
-
 }

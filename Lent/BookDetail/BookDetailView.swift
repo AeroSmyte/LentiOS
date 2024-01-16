@@ -9,7 +9,10 @@ import SwiftUI
 
 struct BookDetailView: View {
   
+  let calender = Calendar.current
+  
   var book: BookEntry
+  @ObservedObject var viewModel = BookEntryViewModel.shared
   
   @Binding var isDetailViewPresented: Bool
   
@@ -18,8 +21,8 @@ struct BookDetailView: View {
       ScrollView {
         VStack {
           HStack {
-            DaysLentAndRatingView(book: book)
-            
+            DaysLentAndRatingView(book: book, dayDifference: viewModel.daysBetween(start: book.lendBorrowDate, end: .now))
+          
             VStack(alignment: .leading) {
               Text(book.bookTitle)
                 .font(.system(size: 72))
@@ -33,7 +36,7 @@ struct BookDetailView: View {
           }
           .padding()
           
-          DetailedBookProgressView(book: book)
+          DetailedBookProgressView(book: book, viewModel: viewModel)
             .padding(.bottom, 20)
           
           MetadataRatingView(book: book)
@@ -62,11 +65,17 @@ struct BookDetailView: View {
   }
 }
 
+
 struct BookDetailView_Previews: PreviewProvider {
-  static var previews: some View {
-    BookDetailView(book: BookEntry(bookTitle: "Fake Title", bookAuthor: "Lexi McQueen", bookStatus: .lent, currentProgress: 50.0, rating: 4, pageCount: 200), isDetailViewPresented: .constant(true))
-  }
+  
+    static var previews: some View {
+        BookDetailView(
+          book: BookEntry(bookTitle: "Fake Title", bookAuthor: "Lexi McQueen", bookStatus: .lent, currentProgress: 50, lendBorrowDate: Date.distantPast, rating: 4, totalPages: 200),
+            isDetailViewPresented: .constant(true)
+        )
+    }
 }
+
 
 struct MetadataTextView: View {
   
@@ -97,11 +106,11 @@ struct MetadataRatingView: View {
       
       Divider()
       
-      MetadataTextView(topText: "Pages", bottomText: "\(book.pageCount)")
+      MetadataTextView(topText: "Pages", bottomText: "\(book.totalPages)")
       
       Divider()
       
-      MetadataTextView(topText: "Lang", bottomText: book.bookLanguage.uppercased())
+      MetadataTextView(topText: "Lang", bottomText: book.bookLanguage.description)
       
     }
   }
@@ -110,6 +119,7 @@ struct MetadataRatingView: View {
 struct DaysLentView: View {
   
   var book: BookEntry
+  var daysLentOrBorrowed: Int
   
   var body: some View {
     ZStack(alignment: .leading) {
@@ -118,10 +128,12 @@ struct DaysLentView: View {
         .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 2)
       
       VStack(alignment: .leading) {
-        Text("36")
+        Text("\(daysLentOrBorrowed)")
           .font(.system(size: 60))
           .bold()
           .foregroundColor(.white)
+          .minimumScaleFactor(0.01)
+          .lineLimit(1)
         Text("Days")
           .font(.title2)
           .foregroundColor(.white)
@@ -137,6 +149,7 @@ struct DaysLentView: View {
 
 struct DetailedBookProgressView: View {
   var book: BookEntry
+  var viewModel: BookEntryViewModel
   
   var body: some View {
     VStack {
@@ -145,7 +158,7 @@ struct DetailedBookProgressView: View {
         .padding(.bottom, 10)
       
       
-      Text("\(Int(book.currentProgress))% Done")
+      Text("\(viewModel.getPercentOfBookComplete(book: book))% Done")
         .kerning(3)
     }
     .padding()
@@ -190,10 +203,11 @@ struct RatingView: View {
 
 struct DaysLentAndRatingView: View {
   var book: BookEntry
+  var dayDifference: Int
   
   var body: some View {
     VStack {
-      DaysLentView(book: book)
+      DaysLentView(book: book, daysLentOrBorrowed: dayDifference)
       
       RatingView(book: book, rating: book.rating)
       

@@ -21,12 +21,12 @@ struct BookListView: View {
         .toolbar {
           ToolbarItem(placement: .navigationBarTrailing) {
             NavigationLink(destination: AddBookEntryView(isAddEntryViewPresented: $isAddEntryViewPresented), isActive: $isAddEntryViewPresented) {
-                          Button("Add Book") {
-                              isAddEntryViewPresented = true
-                          }
-                          .foregroundColor(.purple)
-                      }
-                  }
+              Button("Add Book") {
+                isAddEntryViewPresented = true
+              }
+              .foregroundColor(.purple)
+            }
+          }
         }
     }
   }
@@ -43,7 +43,7 @@ struct BookCardList: View {
   var viewModel: BookEntryViewModel
   
   @State private var isDetailViewPresented : Bool = false
-
+  
   
   private let gridColumns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
   
@@ -51,7 +51,6 @@ struct BookCardList: View {
     ScrollView {
       LazyVGrid(columns: gridColumns, spacing: 30) {
         ForEach(viewModel.bookList, id: \.id) { book in
-
           NavigationLink(destination: BookDetailView(book: book, isDetailViewPresented: $isDetailViewPresented), isActive: $isDetailViewPresented) {
             LazyVStack {
               VStack {
@@ -79,7 +78,6 @@ struct BookCardList: View {
 }
 
 struct CircularProgressView: View {
-  
   var progress: Double
   
   var body: some View {
@@ -90,8 +88,7 @@ struct CircularProgressView: View {
           lineWidth: 7
         )
       Circle()
-      // the total is always a percent out of 100
-        .trim(from: 0, to: Double(progress / 100))
+        .trim(from: 0, to: Double(progress) / 100.0)
         .stroke(
           Color.purple,
           style: StrokeStyle (
@@ -101,18 +98,17 @@ struct CircularProgressView: View {
         )
         .rotationEffect(.degrees(-90))
     }
-    
   }
 }
 
 
 
 struct ProgressBarLayerIconView: View {
-  
   var book: BookEntry
+  
   var body: some View {
     ZStack {
-      CircularProgressView(progress: book.currentProgress)
+      CircularProgressView(progress: Double(book.currentProgress))
         .frame(width: 120, height: 120)
         .padding(.bottom, 5)
       

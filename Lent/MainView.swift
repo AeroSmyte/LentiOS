@@ -21,12 +21,6 @@ struct MainView: View {
           Image(systemName: "books.vertical")
           Text("Books")
         }
-      
-      AddBookEntryView(isAddEntryViewPresented: .constant(false))
-        .tabItem {
-          Image(systemName: "plus.circle")
-          Text("Add Books")
-        }
     }
     .accentColor(.purple)
   }

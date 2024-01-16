@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StatsHomeView: View {
   
+  
   @ObservedObject var viewModel = BookEntryViewModel.shared
 
   var body: some View {
