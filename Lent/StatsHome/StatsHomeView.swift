@@ -56,8 +56,11 @@ struct LogoTitle: View {
       }
     }
     .padding(.bottom)
+    .foregroundColor(Color("PrimaryTextColor"))
   }
 }
+
+// TODO: Make the Borrowed/Lent view into one reusable view
 
 struct PagesBorrowedView: View {
   
@@ -75,9 +78,9 @@ struct PagesBorrowedView: View {
         .font(.title2)
     }.opacity(0.8)
       .frame(width: 350, height: 150)
-      .background(Color.purple)
+      .foregroundColor(Color("PrimaryTextColor"))
+      .background(Color("AccentColor"))
       .cornerRadius(14)
-      .foregroundColor(.white)
       .shadow(radius: 10)
     
   }
@@ -99,7 +102,8 @@ struct PagesLentView: View {
         .font(.title2)
     }.opacity(0.8)
       .frame(width: 350, height: 150)
-      .background(Color.purple)
+      .foregroundColor(Color("PrimaryTextColor"))
+      .background(Color("AccentColor"))
       .cornerRadius(14)
       .foregroundColor(.white)
       .shadow(radius: 10)
@@ -124,8 +128,8 @@ struct BookMoodBlockView: View {
       
     }
     .frame(width: 150, height: 100)
-    .background(Color("DarkGray"))
+    .background(Color("AccentBlue"))
     .cornerRadius(14)
-    .foregroundColor(.white)
+    .foregroundColor(Color("SecondaryTextColor"))
   }
 }

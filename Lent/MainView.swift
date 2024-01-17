@@ -22,7 +22,7 @@ struct MainView: View {
           Text("Books")
         }
     }
-    .accentColor(.purple)
+    .accentColor(Color("AccentBlue"))
   }
 }
 
