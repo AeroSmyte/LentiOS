@@ -14,7 +14,7 @@ struct BookDetailView: View {
   var book: BookEntry
   @ObservedObject var viewModel = BookEntryViewModel.shared
   
-  @Binding var isDetailViewPresented: Bool
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -48,7 +48,7 @@ struct BookDetailView: View {
       }
       
       Button {
-        isDetailViewPresented = false
+        presentationMode.wrappedValue.dismiss()
       } label: {
         Image(systemName: "xmark")
           .font(.title.weight(.semibold))
@@ -70,8 +70,7 @@ struct BookDetailView_Previews: PreviewProvider {
   
     static var previews: some View {
         BookDetailView(
-          book: BookEntry(bookTitle: "Fake Title", bookAuthor: "Lexi McQueen", bookStatus: .lent, currentProgress: 50, lendBorrowDate: Date.distantPast, rating: 4, totalPages: 200),
-            isDetailViewPresented: .constant(true)
+          book: BookEntry(bookTitle: "Fake Title", bookAuthor: "Lexi McQueen", bookStatus: .lent, currentProgress: 50, lendBorrowDate: Date.distantPast, rating: 4, totalPages: 200)
         )
     }
 }
@@ -158,7 +157,7 @@ struct DetailedBookProgressView: View {
         .padding(.bottom, 10)
       
       
-      Text("\(viewModel.getPercentOfBookComplete(book: book))% Done")
+      Text("\(viewModel.calculateCompletionPercentage(currentPage: Int(book.currentProgress), totalPages: book.totalPages))% Done")
         .kerning(3)
     }
     .padding()

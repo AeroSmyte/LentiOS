@@ -17,6 +17,8 @@
 		D3BA64912B4EFA9900C12A93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3BA64902B4EFA9900C12A93 /* Preview Assets.xcassets */; };
 		D3BA64982B4F007800C12A93 /* StatsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA64972B4F007800C12A93 /* StatsHomeView.swift */; };
 		D3BA649C2B4F0A6400C12A93 /* BookEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BA649B2B4F0A6400C12A93 /* BookEntry.swift */; };
+		D3E764AC2B5728FA00326A57 /* BookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E764AB2B5728FA00326A57 /* BookCard.swift */; };
+		D3E764AE2B572E4D00326A57 /* ProgressBarLayerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E764AD2B572E4D00326A57 /* ProgressBarLayerIconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		D3BA64902B4EFA9900C12A93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D3BA64972B4F007800C12A93 /* StatsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsHomeView.swift; sourceTree = "<group>"; };
 		D3BA649B2B4F0A6400C12A93 /* BookEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEntry.swift; sourceTree = "<group>"; };
+		D3E764AB2B5728FA00326A57 /* BookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCard.swift; sourceTree = "<group>"; };
+		D3E764AD2B572E4D00326A57 /* ProgressBarLayerIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarLayerIconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				D3BA648B2B4EFA9800C12A93 /* BookListView.swift */,
+				D3E764AD2B572E4D00326A57 /* ProgressBarLayerIconView.swift */,
+				D3E764AB2B5728FA00326A57 /* BookCard.swift */,
 			);
 			path = BookList;
 			sourceTree = "<group>";
@@ -203,12 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3E764AE2B572E4D00326A57 /* ProgressBarLayerIconView.swift in Sources */,
 				D3BA648C2B4EFA9800C12A93 /* BookListView.swift in Sources */,
 				D36EC6492B51145D00E4AA97 /* MainView.swift in Sources */,
 				D36EC64B2B5114EB00E4AA97 /* AddBookEntryView.swift in Sources */,
 				D3BA64982B4F007800C12A93 /* StatsHomeView.swift in Sources */,
 				D37EF05B2B520BBD0064C4CB /* BookEntryViewModel.swift in Sources */,
 				D36EC6472B50EE6C00E4AA97 /* BookDetailView.swift in Sources */,
+				D3E764AC2B5728FA00326A57 /* BookCard.swift in Sources */,
 				D3BA648A2B4EFA9800C12A93 /* LentApp.swift in Sources */,
 				D3BA649C2B4F0A6400C12A93 /* BookEntry.swift in Sources */,
 			);

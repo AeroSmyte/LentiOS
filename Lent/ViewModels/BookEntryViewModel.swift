@@ -38,18 +38,23 @@ class BookEntryViewModel: ObservableObject {
   
   
   func calculateDaysDifference(from date: Date) -> Int? {
-      let calendar = Calendar.current
-      let currentDate = Date()
-
-      if let difference = calendar.dateComponents([.day], from: date, to: currentDate).day {
-          return difference
-      } else {
-          return nil
-      }
+    let calendar = Calendar.current
+    let currentDate = Date()
+    
+    if let difference = calendar.dateComponents([.day], from: date, to: currentDate).day {
+      return difference
+    } else {
+      return nil
+    }
   }
   
-  func getPercentOfBookComplete(book: BookEntry) -> Int {
-    return Int(book.currentProgress) / book.totalPages
+  func calculateCompletionPercentage(currentPage: Int, totalPages: Int) -> Int {
+    guard totalPages > 0 else {
+      return 0
+    }
+    
+    let percentage = Double(currentPage) / Double(totalPages) * 100.0
+    return Int(min(100, max(0, percentage)))
   }
   
   
@@ -58,9 +63,9 @@ class BookEntryViewModel: ObservableObject {
   }
   
   func daysBetween(start: Date, end: Date) -> Int {
-      let calendar = Calendar.current
-      let components = calendar.dateComponents([.day], from: start, to: end)
-      return components.day ?? 0
+    let calendar = Calendar.current
+    let components = calendar.dateComponents([.day], from: start, to: end)
+    return components.day ?? 0
   }
   
   

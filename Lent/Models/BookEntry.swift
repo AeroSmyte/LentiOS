@@ -11,6 +11,7 @@ import Foundation
 enum BookStatus: CaseIterable, Identifiable, CustomStringConvertible {
   case lent, borrowed
   
+  
   var id: Self { self }
   
   var description: String {
@@ -22,6 +23,7 @@ enum BookStatus: CaseIterable, Identifiable, CustomStringConvertible {
     }
   }
 }
+
 enum Language: CaseIterable, Identifiable, CustomStringConvertible {
   case english, chinese, spanish, italian, russian, ukrainian, portuguese, arabic, japanese, french, german
   

@@ -43,7 +43,7 @@ struct AddBookEntryView: View {
         .bold()
         
         Section("Book Status") {
-          DatePicker(getDatePickerTitle(for: newBookStatus), selection: $currentDate, displayedComponents: [.date])
+          DatePicker(newBookStatus.datePickerTitle, selection: $currentDate, displayedComponents: [.date])
           
           Picker("Book Language", selection: $newBookLanguage) {
             ForEach(Language.allCases) { language in
@@ -135,16 +135,23 @@ struct AddBookEntryView: View {
       .padding()
       
     }
-    
-  }
-  
-  func getDatePickerTitle(for bookStatus: BookStatus) -> String {
-    return bookStatus == .lent ? "Lend Date" : "Borrow Date"
   }
 }
 
 struct AddBookEntryView_Previews: PreviewProvider {
   static var previews: some View {
     AddBookEntryView(isAddEntryViewPresented: .constant(true))
+  }
+}
+
+
+fileprivate extension BookStatus {
+  var datePickerTitle: String {
+      switch self {
+      case .lent:
+          return "Lend Date"
+      case .borrowed:
+          return "Borrow Date"
+      }
   }
 }
