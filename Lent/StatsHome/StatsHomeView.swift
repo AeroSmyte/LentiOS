@@ -29,6 +29,7 @@ struct StatsHomeView: View {
           .padding(.top)
           .font(.largeTitle)
           .bold()
+          .foregroundColor(Color("PrimaryTextColor"))
 
       }
   }
@@ -124,12 +125,14 @@ struct BookMoodBlockView: View {
         .minimumScaleFactor(0.9)
         .lineLimit(2)
       Text("\(number)")
-        .font(.title3)
+        .font(.title2)
+        .bold()
       
     }
     .frame(width: 150, height: 100)
-    .background(Color("AccentBlue"))
+    .background(Color("AccentOrange"))
     .cornerRadius(14)
-    .foregroundColor(Color("SecondaryTextColor"))
+    .foregroundColor(Color("PrimaryTextColor"))
+    .shadow(radius: 5)
   }
 }
