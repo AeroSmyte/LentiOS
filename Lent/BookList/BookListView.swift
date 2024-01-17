@@ -14,6 +14,12 @@ struct BookListView: View {
   
   private let gridColumns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
   
+  init() {
+
+          UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "PrimaryTextColor") ?? .red]
+
+  }
+  
   var body: some View {
     NavigationStack {
       ScrollView {
@@ -34,7 +40,7 @@ struct BookListView: View {
   
   struct BookListContentView_Previews: PreviewProvider {
     static var previews: some View {
-      BookListView(viewModel: BookEntryViewModel())
+      BookListView()
     }
   }
 }

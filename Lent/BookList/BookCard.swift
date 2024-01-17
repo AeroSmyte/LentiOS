@@ -17,18 +17,18 @@ struct BookCard: View {
           ProgressBarLayerIconView(book: book)
           Text("\(Int(book.currentProgress))%")
             .font(.caption)
-            .foregroundColor(.gray)
+            .foregroundColor(Color("AppGray"))
             .padding(.bottom, -15)
           
           Text(book.bookTitle)
             .font(.title3)
-            .foregroundColor(.black)
+            .foregroundColor(Color("PrimaryTextColor"))
             .multilineTextAlignment(.center)
             .frame(minWidth: 150)
             .padding(10)
         }
         .padding()
-        .shadow(radius: 12)
+        .shadow(radius: 4)
       }
       
     }
